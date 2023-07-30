@@ -32,11 +32,6 @@ const authReducer = (state: AuthState = initialState, action: AuthActions): Auth
                 ...state,
                 isAuthenticated: false
             }
-        case authActionTypes.LOGOUT_ERROR:
-            return {
-                ...state,
-                error: action.error
-            }
         default:
             return state
     }

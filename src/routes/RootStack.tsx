@@ -5,6 +5,7 @@ import MenuListScreen from "../screens/MenuListScreen";
 import CartScreen from "../screens/CartScreen";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
+import MenuListHeader from "../components/Menus/MenuListHeader";
 
 const RootStack = () => {
 
@@ -16,18 +17,33 @@ const RootStack = () => {
         <Stack.Navigator
             initialRouteName={isAuthenticated ? "MenuList" : "Login"}
         >
-            <Stack.Screen
-                name="Login"
-                component={LoginScreen}
-            />
-            <Stack.Screen
-                name="MenuList"
-                component={MenuListScreen}
-            />
-            <Stack.Screen
-                name="Cart"
-                component={CartScreen}
-            />
+            {!isAuthenticated ?
+                (<Stack.Screen
+                    name="Login"
+                    component={LoginScreen}
+                    options={{
+                        headerShown: false
+                    }}
+                />)
+                :
+                (
+                    <Stack.Group>
+                        <Stack.Screen
+                            name="MenuList"
+                            component={MenuListScreen}
+                            options={({ navigation, route }) => ({
+                                header: () => <MenuListHeader navigation={navigation} route={route} />,
+                            })}
+                        />
+                        <Stack.Screen
+                            name="Cart"
+                            component={CartScreen}
+                        />
+                    </Stack.Group>
+                )
+            }
+
+
         </Stack.Navigator>
     )
 }

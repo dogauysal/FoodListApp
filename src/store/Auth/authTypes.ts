@@ -1,16 +1,16 @@
+import { ILoginModel } from "../../models/Login/ILoginModel";
+
 export enum authActionTypes {
     LOGIN_REQUEST = "LOGIN_REQUEST",
     LOGIN_SUCCESS = "LOGIN_SUCCESS",
     LOGIN_ERROR = "LOGIN_ERROR",
     LOGOUT_REQUEST = "LOGOUT_REQUEST",
-    LOGOUT_SUCCESS = "LOGOUT_SUCCESS",
-    LOGOUT_ERROR = "LOGOUT_ERROR"
+    LOGOUT_SUCCESS = "LOGOUT_SUCCESS"
 }
 
 export interface LoginRequest {
     type: authActionTypes.LOGIN_REQUEST;
-    email: string;
-    password: string;
+    data: ILoginModel
 }
 
 export interface LoginSuccess {
@@ -30,18 +30,12 @@ export interface LogoutSuccess {
     type: authActionTypes.LOGOUT_SUCCESS;
 }
 
-export interface LogoutError {
-    type: authActionTypes.LOGOUT_ERROR;
-    error: string;
-}
-
 export type AuthActions =
     | LoginRequest
     | LoginSuccess
     | LoginError
     | LogoutRequest
-    | LogoutSuccess
-    | LogoutError;
+    | LogoutSuccess;
 
 export interface AuthState {
     isAuthenticated: boolean;

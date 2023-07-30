@@ -1,12 +1,11 @@
 import { IMenu } from "../../models/Menu/IMenu";
 import MenuService from "../../services/MenuService";
-import { GetAllMenusRequest, menuActionTypes } from "./menuTypes";
+import { menuActionTypes } from "./menuTypes";
 import { call, put, takeLatest } from "redux-saga/effects"
 
-function* getAllMenus(action: GetAllMenusRequest) {
+function* getAllMenus() {
     const response: IMenu[] = yield call(MenuService.getAllMenus);
-
-    if (!response) {
+    if (response) {
         yield put({
             type: menuActionTypes.MENU_LIST_SUCCESS,
             menus: response

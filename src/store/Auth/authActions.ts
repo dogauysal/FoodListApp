@@ -1,9 +1,10 @@
-import { authActionTypes } from "./AuthTypes";
+import { ILoginModel } from "../../models/Login/ILoginModel";
+import { authActionTypes } from "./authTypes";
 
-export const login = (email: string, password: string) => ({
+
+export const login = (data: ILoginModel) => ({
     type: authActionTypes.LOGIN_REQUEST,
-    email,
-    password
+    data
 })
 
 export const logout = () => ({
