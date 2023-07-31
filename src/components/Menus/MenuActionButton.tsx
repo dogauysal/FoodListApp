@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     },
     addToCartButton: {
         alignItems: "center",
+        paddingVertical: 5
     },
     addToCartButtonText: {
         fontSize: 10,

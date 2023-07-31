@@ -77,7 +77,7 @@ const menuReducer = (state: MenuState = initialState, action: MenuActions): Menu
             return {
                 ...state,
                 cart: [],
-                filteredMenus: []
+                filteredMenus: [...state.menus]
             }
         case menuActionTypes.SEARCH_MENU_REQUEST:
             return {

@@ -6,6 +6,7 @@ import CartScreen from "../screens/CartScreen";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/rootReducer";
 import MenuListHeader from "../components/Menus/MenuListHeader";
+import { TIKLAGELSINCOLOR } from "../constants";
 
 const RootStack = () => {
 
@@ -38,6 +39,14 @@ const RootStack = () => {
                         <Stack.Screen
                             name="Cart"
                             component={CartScreen}
+                            options={({ }) => ({
+                                title: "Sepet",
+                                headerTitleStyle: {
+                                    color: TIKLAGELSINCOLOR,
+                                    fontSize: 20,
+                                },
+                                headerTintColor: TIKLAGELSINCOLOR
+                            })}
                         />
                     </Stack.Group>
                 )
