@@ -1,7 +1,7 @@
 import { IMenu } from "../../models/Menu/IMenu";
 import MenuService from "../../services/MenuService";
-import { menuActionTypes } from "./menuTypes";
-import { call, put, takeLatest } from "redux-saga/effects"
+import { DecreaseProductCount, IncreaseProductCount, SearchMenus, menuActionTypes } from "./menuTypes";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects"
 
 function* getAllMenus() {
     const response: IMenu[] = yield call(MenuService.getAllMenus);
@@ -18,8 +18,33 @@ function* getAllMenus() {
     }
 }
 
+function* increaseProduct(action: IncreaseProductCount) {
+    yield put({
+        type: menuActionTypes.INCREASE_PRODUCT_COUNT,
+        menuId: action.menuId
+    })
+}
+
+function* decreaseProduct(action: DecreaseProductCount) {
+    yield put({
+        type: menuActionTypes.DECREASE_PRODUCT_COUNT,
+        menuId: action.menuId
+    })
+}
+
+function* searchMenus(action: SearchMenus) {
+    yield put({
+        type: menuActionTypes.SEARCH_MENUS,
+        searchText: action.searchText
+    })
+}
+
+
 function* menuSaga() {
     yield takeLatest(menuActionTypes.MENU_LIST_REQUEST, getAllMenus);
+    yield takeEvery(menuActionTypes.INCREASE_PRODUCT_REQUEST, increaseProduct)
+    yield takeEvery(menuActionTypes.DECREASE_PRODUCT_REQUEST, decreaseProduct)
+    yield takeEvery(menuActionTypes.SEARCH_MENU_REQUEST, searchMenus)
 }
 
 export default menuSaga

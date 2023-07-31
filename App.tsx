@@ -25,7 +25,6 @@ const App = () => {
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <NavigationContainer>
-
             <RootStack />
           </NavigationContainer>
         </PersistGate>

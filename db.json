@@ -127,6 +127,38 @@
                 }
             ],
             "url": "https://picsum.photos/id/431/400/400"
+        },
+        {
+            "id": 9,
+            "name": "Menu 9",
+            "price": 47,
+            "ingredients": [
+                {
+                    "id": 1,
+                    "name": "Patates"
+                },
+                {
+                    "id": 5,
+                    "name": "Zeytin"
+                }
+            ],
+            "url": "https://picsum.photos/id/461/400/400"
+        },
+        {
+            "id": 10,
+            "name": "Menu 10",
+            "price": 7,
+            "ingredients": [
+                {
+                    "id": 1,
+                    "name": "Patates"
+                },
+                {
+                    "id": 6,
+                    "name": "Peynir"
+                }
+            ],
+            "url": "https://picsum.photos/id/581/400/400"
         }
     ]
 }

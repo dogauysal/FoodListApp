@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { authActionTypes } from "./authTypes";
 import AuthService from "../../services/AuthService";
+import { menuActionTypes } from "../Menu/menuTypes";
 
 
 function* login() {
@@ -20,6 +21,7 @@ function* login() {
 }
 
 function* logout() {
+    yield put({ type: menuActionTypes.CLEAR_CART })
     yield put({ type: authActionTypes.LOGOUT_SUCCESS })
 }
 

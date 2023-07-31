@@ -1,15 +1,17 @@
-import { StyleSheet, Text, View } from "react-native"
+import { FlatList, StyleSheet, Text, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store/rootReducer"
 import { IMenu } from "../models/Menu/IMenu"
-import { GetAllMenus } from "../store/Menu/menuActions"
+import { ClearCart, GetAllMenus } from "../store/Menu/menuActions"
 import { useEffect } from "react"
+import MenuItemRow from "../components/Menus/MenuItemRow"
+import MenuSearchBar from "../components/Menus/MenuSearchBar"
 
 const MenuListScreen = () => {
 
     const dispatch = useDispatch()
 
-    const menus = useSelector<RootState, IMenu[]>(state => state.Menu.menus);
+    const filteredMenus = useSelector<RootState, IMenu[]>(state => state.Menu.filteredMenus);
 
     useEffect(() => {
         fetchMenus()
@@ -19,12 +21,15 @@ const MenuListScreen = () => {
         await dispatch(GetAllMenus())
     }
 
+    const renderMenuItemRow = ({ item }: { item: IMenu }) => <MenuItemRow key={item.id} menu={item} />
+
     return (
         <View style={styles.container}>
-            <Text>Menu List Screen</Text>
-            {menus.map((menu) => (
-                <Text key={menu.id}>{menu.name}</Text>
-            ))}
+            <MenuSearchBar />
+            <FlatList
+                data={filteredMenus}
+                renderItem={renderMenuItemRow}
+            />
         </View>
     )
 }
@@ -32,6 +37,7 @@ const MenuListScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff"
     }
 })
 

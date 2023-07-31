@@ -26,6 +26,7 @@ const FormInput = React.forwardRef<TextInput, IProps>(
                     style={[styles.input, hasError ? styles.error : {}]}
                     onChangeText={field.onChange}
                     value={field.value}
+                    placeholder={placeholder}
                     {...inputProps}
                 />
                 {hasError && <Text style={styles.errorText}>{`${formState.errors[name]?.message}`}</Text>}

@@ -1,8 +1,10 @@
+import { IMenu } from "../../models/Menu/IMenu";
 import { MenuActions, MenuState, menuActionTypes } from "./menuTypes";
 
 const initialState: MenuState = {
     menus: [],
-    cart: null,
+    filteredMenus: [],
+    cart: [],
     error: ""
 }
 
@@ -11,43 +13,90 @@ const menuReducer = (state: MenuState = initialState, action: MenuActions): Menu
         case menuActionTypes.MENU_LIST_REQUEST:
             return {
                 ...state,
+                filteredMenus: [],
                 error: ""
             }
         case menuActionTypes.MENU_LIST_SUCCESS:
             return {
                 ...state,
-                menus: action.menus
+                menus: action.menus,
+                filteredMenus: action.menus
             }
         case menuActionTypes.MENU_LIST_ERROR:
             return {
                 ...state,
                 error: action.error
             }
-        case menuActionTypes.ADD_MENU_TO_CART_REQUEST:
-            return {
-                ...state,
-            }
-        case menuActionTypes.ADD_MENU_TO_CART_SUCCESS:
+        case menuActionTypes.INCREASE_PRODUCT_REQUEST:
             return {
                 ...state
             }
-        case menuActionTypes.ADD_MENU_TO_CART_ERROR:
+        case menuActionTypes.INCREASE_PRODUCT_COUNT:
+            let increaseCartList = state.cart
+
+            let cartItemIncrease = increaseCartList.find(c => c.menuId === action.menuId)
+            if (cartItemIncrease) {
+                cartItemIncrease.count += 1;
+            } else {
+                let menu = state.menus.find(m => m.id === action.menuId)
+
+                if (menu) {
+                    increaseCartList.push({
+                        menuId: action.menuId,
+                        menu,
+                        count: 1
+                    })
+                }
+
+            }
+
             return {
                 ...state,
-                error: action.error
+                cart: [...increaseCartList]
             }
-        case menuActionTypes.DELETE_MENU_FROM_CART_REQUEST:
+        case menuActionTypes.DECREASE_PRODUCT_REQUEST:
             return {
                 ...state
             }
-        case menuActionTypes.DELETE_MENU_FROM_CART_SUCCESS:
+        case menuActionTypes.DECREASE_PRODUCT_COUNT:
+            let decreaseCartList = state.cart
+
+            let cartItemDecrease = decreaseCartList.find(d => d.menuId === action.menuId)
+            if (cartItemDecrease) {
+                if (cartItemDecrease.count === 1) {
+                    decreaseCartList = decreaseCartList.filter(d => d.menuId !== action.menuId)
+                } else {
+                    cartItemDecrease.count -= 1
+                }
+            }
+            return {
+                ...state,
+                cart: [...decreaseCartList]
+            }
+        case menuActionTypes.CLEAR_CART:
+            return {
+                ...state,
+                cart: [],
+                filteredMenus: []
+            }
+        case menuActionTypes.SEARCH_MENU_REQUEST:
             return {
                 ...state
             }
-        case menuActionTypes.DELETE_MENU_FROM_CART_ERROR:
+        case menuActionTypes.SEARCH_MENUS:
+            let filteredMenus: IMenu[] = []
+
+            const searchTextLower = action.searchText.toLowerCase();
+
+            filteredMenus = state.menus.filter((item) =>
+                item.name.toLowerCase().includes(searchTextLower) ||
+                item.ingredients.some((subItem) => subItem.name.toLowerCase().includes(searchTextLower))
+            )
+
+
             return {
                 ...state,
-                error: action.error
+                filteredMenus: filteredMenus
             }
         default:
             return state
