@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { DecreaseProductCount, IncreaseProductCount } from "../../store/Menu/menuActions";
 import { RootState } from "../../store/rootReducer";
 import { ICartItem } from "../../models/Cart/ICartItem";
-import { IMenu } from "../../models/Menu/IMenu";
 
 interface IProps {
     menuId: number

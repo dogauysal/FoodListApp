@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PriceInfo PriceInfo renders correctly 1`] = `
+<View
+  style={
+    {
+      "padding": 15,
+    }
+  }
+>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 10,
+        "paddingHorizontal": 2,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 24,
+        }
+      }
+    >
+      Fiyat
+    </Text>
+    <Text
+      style={
+        {
+          "fontSize": 24,
+        }
+      }
+    >
+      30
+       TL
+    </Text>
+    <View
+      style={
+        {
+          "backgroundColor": "black",
+          "bottom": 16,
+          "height": 4,
+          "position": "absolute",
+          "right": 24,
+          "transform": [
+            {
+              "rotate": "-45deg",
+            },
+          ],
+          "width": 48,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 10,
+        "paddingHorizontal": 2,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 24,
+        }
+      }
+    >
+      İndirim
+    </Text>
+    <Text
+      style={
+        {
+          "fontSize": 24,
+        }
+      }
+    >
+      10
+       TL
+    </Text>
+  </View>
+  <View
+    style={
+      {
+        "borderWidth": 1,
+        "marginHorizontal": -5,
+      }
+    }
+  />
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 10,
+        "paddingHorizontal": 2,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "fontSize": 24,
+        }
+      }
+    >
+      Toplam
+    </Text>
+    <Text
+      style={
+        {
+          "fontSize": 24,
+        }
+      }
+    >
+       
+      20
+       TL
+    </Text>
+  </View>
+</View>
+`;

@@ -2,7 +2,8 @@ import { Image, StyleSheet, Text, View } from "react-native"
 import { TIKLAGELSINCOLOR } from "../../constants"
 import { IMenu } from "../../models/Menu/IMenu"
 import React from "react"
-import AddToCartButton from "./MenuActionButton"
+import AddToCartButton from "./AddToCartButton"
+
 
 interface IProps {
     menu: IMenu
