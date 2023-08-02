@@ -18,6 +18,10 @@ The project uses json-server for data simulation. To start the server, run the f
 
 npm run db
 
+http://localhost:3000
+
+http://localhost:3000/menus
+
 Open a new terminal and start the Node.js server:
 
 npm run start
